@@ -1,0 +1,26 @@
+package youtube;
+import java.util.*;
+
+public class Me {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.print("Enter the number of rows of Pascal Triangle to generate: ");
+		Scanner sc = new Scanner(System.in);
+		int length = sc.nextInt();
+		int[][] Arr = new int[length][length];
+		
+		for (int h=0; h<Arr.length; h++) {
+			Arr[h] = new int[0];
+		}
+		
+		for (int i=0, j=0; i<Arr.length && j<Arr.length; i++, j++) {
+			Arr[i+1][j+1]=Arr[i][j] + Arr [i][j+1];
+		}
+		
+		for (int i=0;i<Arr.length;i++) {
+			System.out.println(Arrays.toString(Arr));
+		}
+	}
+}
+

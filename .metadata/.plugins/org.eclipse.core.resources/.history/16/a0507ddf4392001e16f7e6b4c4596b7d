@@ -1,0 +1,21 @@
+package test;
+import java.util.*;
+
+public class Test1 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a=50, b=10, x=6, z=3;
+		if (a<b)
+			;
+		else {
+			x=z;
+			System.out.print(x);
+		};
+		System.out.print(x);
+	}
+		}
+
+
+
+
+

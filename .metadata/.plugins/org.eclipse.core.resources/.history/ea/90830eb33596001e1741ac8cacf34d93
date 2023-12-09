@@ -1,0 +1,26 @@
+package viva2;
+
+public class Viva2Q2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(removeSpecialCharacters("it's not like that"));
+	}
+
+	public static String removeSpecialCharacters(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == ' ') {
+				
+			}
+			else if (!(str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') && !(str.charAt(i) >= 'a' && str.charAt(i) <= 'z')) {
+				String strChar = Character.toString(str.charAt(i));
+				str = str.replace(strChar, "");
+			}
+		}
+		return str;
+	}
+	
+	public static void isPalindrome(String str) {
+		
+	}
+}

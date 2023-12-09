@@ -1,0 +1,161 @@
+package viva2;
+import java.util.*;
+
+public class Viva2Q1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		int[][] Arr1 = new int[3][3];
+		int[][] Arr2 = new int[3][3];
+		int[][] Arr3 = new int[3][3];
+		
+//		Taking array inputs
+		System.out.println("Enter first integer array input in the order from up to down and from left to right. Press Enter after each input.");
+		for (int i = 0; i < Arr1.length; i++) {
+			for (int j = 0; j < Arr1[i].length; j++) {
+				Arr1[i][j] = sc.nextInt();
+			}
+		}
+		
+		System.out.println("Enter second integer array input in the order from up to down and from left to right. Press Enter after each input.");
+		for (int i = 0; i < Arr2.length; i++) {
+			for (int j = 0; j < Arr2[i].length; j++) {
+				Arr2[i][j] = sc.nextInt();
+			}
+		}
+		
+//		Printing out arrays
+		System.out.println("Your arrays are ");
+		for (int i = 0; i < Arr1.length; i++) {
+			for (int j = 0; j < Arr1[i].length; j++) {
+				System.out.print(Arr1[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("and");
+		for (int i = 0; i < Arr2.length; i++) {
+			for (int j = 0; j < Arr2[i].length; j++) {
+				System.out.print(Arr2[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		System.out.println("The addition of the two arrays is "+Arrays.deepToString(addition(Arr1, Arr2)));
+		System.out.println("The subtraction of the two arrays is "+Arrays.deepToString(subtraction(Arr1, Arr2)));
+		System.out.println("The multiplication of the two arrays is "+Arrays.deepToString(multiplication(Arr1, Arr2)));
+		
+		System.out.println("Enter array input to find out its determinant and inverse");
+		for (int i = 0; i < Arr3.length; i++) {
+			for (int j = 0; j < Arr3[i].length; j++) {
+				Arr3[i][j] = sc.nextInt();
+			}
+		}
+		System.out.println("The determinant of the array is "+determinant(Arr3));
+		System.out.println("The inverse of the array is "+Arrays.deepToString(inverse(Arr3)));
+//		System.out.println(Arrays.deepToString(Arr1));
+	}
+	
+	public static int[][] addition(int[][] Arr1, int[][] Arr2) {
+		int[][] Arr3 = new int[3][3];
+		
+		for (int i = 0; i < Arr1.length; i++) {
+			for (int j = 0; j < Arr1[i].length; j++) {
+				Arr3[i][j] = Arr1[i][j] + Arr2[i][j];
+			}
+		}
+		
+		return Arr3;
+	}
+	
+	public static int[][] subtraction(int[][] Arr1, int[][] Arr2) {
+		int[][] Arr3 = new int[3][3];
+		
+		for (int i = 0; i < Arr1.length; i++) {
+			for (int j = 0; j < Arr1[i].length; j++) {
+				Arr3[i][j] = Arr1[i][j] - Arr2[i][j];
+			}
+		}
+		
+		return Arr3;
+}
+	
+	public static int[][] multiplication(int[][] Arr1, int[][] Arr2) {
+		int[][] Arr3 = new int[3][3];
+		
+		for (int i = 0; i < Arr1.length; i++) {
+			for (int j = 0; j < Arr1[i].length; j++) {
+				Arr3[i][j] = Arr1[i][j] * Arr2[i][j];
+			}
+		}
+		
+		return Arr3;
+	}
+	
+	public static int determinant(int[][] arr) {
+		
+		int a = arr[0][0]; int b = arr[0][1]; int c = arr[0][2];
+		int d = arr[1][0]; int e = arr[1][1]; int f = arr[2][2];
+		int g = arr[2][0]; int h = arr[2][1]; int i = arr[2][2];
+		
+		int determinant = a*(e*i - f*h) - b*(d*i - f*g) + c*(d*h - e*g);
+		
+		return determinant;
+	}
+	
+	public static int minorDeterminant(int a, int b, int c, int d) {
+		return a*d - b*c;
+	}
+	
+//	adjugateMatrix == transposed cofactor matrix
+	public static int[][] adjugateMatrix(int[][] Arr) {
+		int[][] cofactor = new int[3][3];
+		
+		int a = Arr[0][0]; int b = Arr[0][1]; int c = Arr[0][2];
+		int d = Arr[1][0]; int e = Arr[1][1]; int f = Arr[2][2];
+		int g = Arr[2][0]; int h = Arr[2][1]; int i = Arr[2][2];
+		
+		cofactor[0][0] = minorDeterminant(e,f,h,i);
+		cofactor[0][1] = minorDeterminant(d,f,g,i);
+		cofactor[0][2] = minorDeterminant(d,e,g,h);
+		cofactor[1][0] = minorDeterminant(b,c,h,i);
+		cofactor[1][1] = minorDeterminant(a,c,g,i);
+		cofactor[1][2] = minorDeterminant(a,b,g,h);
+		cofactor[2][0] = minorDeterminant(b,c,e,f);
+		cofactor[2][1] = minorDeterminant(a,c,d,f);
+		cofactor[2][2] = minorDeterminant(a,b,d,e);
+		
+		
+		cofactor[0][1] *= -1;
+		cofactor[1][0] *= -1;
+		cofactor[1][2] *= -1;
+		cofactor[2][1] *= -1;
+		
+//		transposing the matrix
+		int[][] adjugate = new int[3][3];
+		for (int j = 0; j < cofactor.length; j++) {
+			for (int k = 0; k < cofactor[j].length; k++) {
+				adjugate[j][k] = cofactor[j][k];
+			}
+		}
+		return adjugate;
+	}
+	
+	public static int[][] inverse(int[][] Arr) {
+		
+		int determinant = determinant(Arr);
+		int[][] adjugate = adjugateMatrix(Arr);
+		
+		int[][] inverse = new int[3][3];
+		
+		for (int i = 0; i < inverse.length; i++) {
+			for (int j = 0; j < inverse.length; j++) {
+				inverse[i][j]= (1/determinant) * adjugate[i][j];
+			}
+		}
+		return inverse;
+		
+	}
+}

@@ -1,0 +1,29 @@
+package midsem;
+import java.util.Scanner;
+import java.util.Random;
+
+public class Midsem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.print("Enter the number of staff: ");
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		for (int i=0; i<num; i++) {
+			Random rand = new Random();
+			int ID = rand.nextInt(10000, 100000);
+			System.out.println("Staff ID: " + ID);
+			ID = (ID - (ID%10)) / 10;
+			int ID1 = (ID - (ID%10)) / 10;
+			ID1 = (ID - (ID%10)) / 10;
+			
+				if (ID%10==0 && ID) {
+				
+			}
+			
+		}
+
+		
+	}
+
+}
